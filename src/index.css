@@ -37,8 +37,6 @@ canvas {
   justify-content: center;
   text-align: center;
   align-items: center;
-  display: flex;
-  flex-direction: column;
   pointer-events: none;
   cursor: url("/cursor.svg"), default;
 }
@@ -46,6 +44,7 @@ canvas {
 #degree {
   font-size: 3px;
   color: #b28dff;
+  padding-top: 2px;
 }
 #greeting,
 #condition {
