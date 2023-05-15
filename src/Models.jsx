@@ -53,7 +53,7 @@ export default ({ isNight }) => {
           <meshStandardMaterial color={"#f7aef8"} />
           <Html
             transform
-            occlude
+            occlude="raycast"
             position={[-0.13, 0.82, -0.54]}
             rotation={[0, Math.PI / 20, 0]}
           >
