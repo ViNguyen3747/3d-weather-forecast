@@ -54,7 +54,7 @@ export default ({ isNight }) => {
         </mesh>
         <Html
           transform
-          occlude="raycast"
+          occlude
           position={[-0.13, 0.82, -0.54]}
           rotation={[0, Math.PI / 20, 0]}
         >
