@@ -51,21 +51,21 @@ export default ({ isNight }) => {
         </mesh>
         <mesh geometry={nodes.screen.geometry}>
           <meshStandardMaterial color={"#f7aef8"} />
-        </mesh>
-        <Html
-          transform
-          occlude
-          position={[-0.13, 0.82, -0.54]}
-          rotation={[0, Math.PI / 20, 0]}
-        >
-          <div className="content">
-            <div id="degree">
-              {isNight ? "75" : "20"}&deg;{isNight ? "F" : "C"}
+          <Html
+            transform
+            occlude
+            position={[-0.13, 0.82, -0.54]}
+            rotation={[0, Math.PI / 20, 0]}
+          >
+            <div className="content">
+              <div id="degree">
+                {isNight ? "75" : "20"}&deg;{isNight ? "F" : "C"}
+              </div>
+              <div id="greeting">Good {isNight ? "Night" : "Morning"}</div>
+              <div id="condition">{isNight ? "Clear Sky" : "Cloudy"}</div>
             </div>
-            <div id="greeting">Good {isNight ? "Night" : "Morning"}</div>
-            <div id="condition">{isNight ? "Clear Sky" : "Cloudy"}</div>
-          </div>
-        </Html>
+          </Html>
+        </mesh>
       </group>
       <mesh geometry={nodes.keyboard.geometry}>
         <meshStandardMaterial color={"#c2a0ef"} />
