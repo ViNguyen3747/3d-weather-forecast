@@ -27,6 +27,21 @@ export default ({ isNight }) => {
   console.log(nodes);
   return (
     <group position={[0, -1.4, 0]}>
+      <Html
+        transform
+        occlude
+        position={[-0.178, 0.81, -0.524]}
+        rotation={[0, Math.PI / 9, 0]}
+        scale={0.5}
+      >
+        <div className="content">
+          <div id="degree-screen">
+            {isNight ? "75" : "20"}&deg;{isNight ? "F" : "C"}
+          </div>
+          <div id="greeting-screen">Good {isNight ? "Night" : "Morning"}</div>
+          <div id="condition-screen">{isNight ? "Clear Sky" : "Cloudy"}</div>
+        </div>
+      </Html>
       <mesh geometry={nodes.wall.geometry}>
         <meshStandardMaterial color={"#c2a0ef"} />
       </mesh>
@@ -50,9 +65,9 @@ export default ({ isNight }) => {
           <meshStandardMaterial color={"#b388eb"} />
         </mesh>
         <mesh geometry={nodes.screen.geometry}>
-          <meshStandardMaterial color={"#f7aef8"} />
+          <meshBasicMaterial color={"#fbe4ff"} toneMapped={false} />
         </mesh>
-        <Html
+        {/* <Html
           transform
           occlude
           position={[-0.13, 0.82, -0.54]}
@@ -65,7 +80,7 @@ export default ({ isNight }) => {
             <div id="greeting">Good {isNight ? "Night" : "Morning"}</div>
             <div id="condition">{isNight ? "Clear Sky" : "Cloudy"}</div>
           </div>
-        </Html>
+        </Html> */}
       </group>
       <mesh geometry={nodes.keyboard.geometry}>
         <meshStandardMaterial color={"#c2a0ef"} />
