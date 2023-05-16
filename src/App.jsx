@@ -64,7 +64,7 @@ function App() {
         Night
       </button>
       <Form />
-      <div className="data-container">
+      {/* <div className="data-container">
         <div className="data-box">
           <div id="degree">
             {isNight ? "75" : "20"}&deg;{isNight ? "F" : "C"}
@@ -72,7 +72,7 @@ function App() {
           <div id="greeting">Good {isNight ? "Night" : "Morning"}</div>
           <div id="condition">{isNight ? "Clear Sky" : "Cloudy"}</div>
         </div>
-      </div>
+      </div> */}
       <Canvas camera={{ position: [0, 0, 10], fov: 10 }}>
         <ambientLight intensity={isNight ? 0.3 : 1} />
         <directionalLight
