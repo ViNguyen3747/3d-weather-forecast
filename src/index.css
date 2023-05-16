@@ -41,15 +41,15 @@ canvas {
   cursor: url("/cursor.svg"), default;
 }
 #degree-screen {
-  font-size: 4px;
-  color: #ffffff;
+  font-size: 8px;
+  color: #f4978e;
   padding-top: 2px;
 }
 #greeting-screen,
 #condition-screen {
   font-size: 2px;
-  padding: 2px;
-  color: #ffffff;
+  padding: 1px;
+  color: #f4978e;
 }
 #degree {
   font-size: 4em;
