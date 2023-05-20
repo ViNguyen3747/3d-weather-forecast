@@ -37,17 +37,16 @@ const Rig = ({ isNight }) => {
     const canvas = document.querySelector("canvas");
     if (isNight) canvas.style.background = NIGHT_SKY;
     else canvas.style.background = DAY_SKY;
-    camera.position.lerp(
-      vec.set(mouse.x * 0.05, mouse.y * 0.05, camera.position.z),
-      0.02
-    );
+    // camera.position.lerp(
+    //   vec.set(mouse.x * 0.05, mouse.y * 0.05, camera.position.z),
+    //   0.02
+    // );
   });
   return <></>;
 };
 
 function App() {
   const [isNight, setNight] = useState(false);
-
   useEffect(() => {
     fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=seattle&appid=27cc0f9e54d73d8e67bfafb8beef78e4"
@@ -90,6 +89,7 @@ export default App;
 
 const Form = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   const handleToggle = (e) => {
     e.preventDefault();
     setIsOpen((prev) => !prev);

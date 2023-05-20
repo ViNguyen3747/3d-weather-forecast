@@ -1,4 +1,7 @@
 import { Html, useGLTF } from "@react-three/drei";
+import { useRef } from "react";
+import { useThree, useFrame } from "@react-three/fiber";
+import { MathUtils } from "three";
 
 const BUILDING_COLORS = [
   "#936bff",
@@ -24,10 +27,30 @@ const DOOR_COLORS = [
 
 export default ({ isNight }) => {
   const { nodes } = useGLTF("./models.glb");
+  const sceneRef = useRef();
+  const { mouse } = useThree();
+  useFrame(() => {
+    // sceneRef.current.rotation.y =
+    //   sceneRef.current.rotation.y +
+    //   ((mouse.x * Math.PI * 2) / 80 - sceneRef.current.rotation.y);
+    // sceneRef.current.rotation.x =
+    //   sceneRef.current.rotation.x +
+    //   ((mouse.y * Math.PI * 2) / 80 - sceneRef.current.rotation.x);
+    sceneRef.current.rotation.y = MathUtils.lerp(
+      sceneRef.current.rotation.y,
+      (mouse.x * Math.PI * 2) / 80,
+      0.1
+    );
+    sceneRef.current.rotation.x = MathUtils.lerp(
+      sceneRef.current.rotation.x,
+      (mouse.y * Math.PI * 2) / 80,
+      0.1
+    );
+  });
   console.log(nodes);
   return (
-    <group position={[0, -1.4, 0]}>
-      <Html
+    <group position={[0, -1.3, 0]} ref={sceneRef}>
+      {/* <Html
         transform
         occlude
         position={[-0.178, 0.81, -0.524]}
@@ -41,7 +64,7 @@ export default ({ isNight }) => {
           <div id="greeting-screen">Good {isNight ? "Night" : "Morning"}</div>
           <div id="condition-screen">{isNight ? "Clear Sky" : "Cloudy"}</div>
         </div>
-      </Html>
+      </Html> */}
       <mesh geometry={nodes.wall.geometry}>
         <meshStandardMaterial color={"#c2a0ef"} />
       </mesh>
@@ -96,14 +119,14 @@ export default ({ isNight }) => {
           <meshStandardMaterial color={BUILDING_COLORS[i]} />
         </mesh>
       ))}
-      {/* {[...Array(8)].map((_, i) => (
+      {[...Array(8)].map((_, i) => (
         <mesh
           key={`snow_roof${i + 1}`}
           geometry={nodes[`snow_roof${i + 1}`].geometry}
         >
           <meshBasicMaterial color={"#ffffff"} toneMapped={false} />
         </mesh>
-      ))} */}
+      ))}
       {[...Array(8)].map((_, i) => (
         <mesh
           key={`door_dark${i + 1}`}
