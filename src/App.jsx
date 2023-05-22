@@ -145,9 +145,9 @@ function App() {
 
   return (
     <>
-      <div className="Overlay">
+      {/* <div className="Overlay">
         <button onClick={() => setNight((isNight) => !isNight)}>Night</button>
-      </div>
+      </div> */}
       <SoundControls />
       <Contribution />
       <Form />
@@ -179,6 +179,9 @@ const Form = () => {
   };
   return (
     <div className="top-container">
+      <div className="line" />
+      <div className={`toggle-button `} onClick={(e) => handleToggle(e)} />
+
       <div className={`form-container  ${isOpen && "toggle-active"}`}>
         <div className="box">
           <input placeholder="City" className="input" type="text" />
@@ -187,8 +190,6 @@ const Form = () => {
           <button className="btn">Submit</button>
         </div>
       </div>
-      <div className="line" />
-      <div className={`toggle-button `} onClick={(e) => handleToggle(e)} />
     </div>
   );
 };

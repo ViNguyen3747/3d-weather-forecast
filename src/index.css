@@ -32,7 +32,9 @@ canvas {
   top: 0;
   right: 0;
   margin: 20px;
-  cursor: url("/cursor.svg"), default;
+}
+.soundControl:hover {
+  cursor: url("/pointer.svg"), default;
 }
 
 .draft {
@@ -189,7 +191,7 @@ canvas {
   transform: translateY(-17.5em);
   transition: transform 0.5s ease-out;
   display: flex;
-  margin-left: 1em;
+  margin-left: 4em;
 }
 .toggle-button {
   width: 2em;
@@ -199,8 +201,12 @@ canvas {
   border: 2px dashed #ffffff;
   box-shadow: 0 0 0 5px #ffffff95;
   position: absolute;
-  margin-left: 16em;
-  margin-top: 2em;
+  margin-left: 1em;
+  margin-top: 19em;
+}
+
+.toggle-button:hover {
+  cursor: url("/pointer.svg"), default;
 }
 .toggle-active {
   transform: translateY(2em);
@@ -211,7 +217,7 @@ canvas {
   background-color: #ffffff;
   width: 0.2em;
   height: 19em;
-  margin-left: 17em;
+  margin-left: 2em;
   top: 0;
 }
 
@@ -235,6 +241,10 @@ canvas {
   font-weight: bolder;
   font-size: large;
   transition: transform 0.8s ease-in-out;
+}
+
+.contribution-toggle-button:hover {
+  cursor: url("/pointer.svg"), default;
 }
 .contribution-toggle-active {
   transform: translateX(-24em);

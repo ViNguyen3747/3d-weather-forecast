@@ -26,6 +26,8 @@ const DOOR_COLORS = [
 ];
 const RobotFaces = ({ nodes }) => {
   const [faceNumber, setFace] = useState(1);
+  const { gl } = useThree();
+
   const handleClick = (e) => {
     e.stopPropagation();
     if (faceNumber === 4) {
@@ -34,8 +36,19 @@ const RobotFaces = ({ nodes }) => {
       setFace((prev) => prev + 1);
     }
   };
+
   return (
-    <group onClick={handleClick}>
+    <group
+      onClick={handleClick}
+      onPointerOver={(event) => {
+        event.stopPropagation();
+        gl.domElement.style.cursor = "url('/pointer.svg'), default";
+      }}
+      onPointerOut={(event) => {
+        event.stopPropagation();
+        gl.domElement.style.cursor = 'url("/cursor.svg"), default';
+      }}
+    >
       <mesh geometry={nodes.screen.geometry}>
         <meshBasicMaterial color={"#fbe4ff"} toneMapped={false} />
       </mesh>
