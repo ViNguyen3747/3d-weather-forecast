@@ -66,7 +66,7 @@ export default ({ isNight }) => {
   const { mouse } = useThree();
   console.log(nodes);
   useFrame(({ clock }) => {
-    sunRayRef.current.rotation.z = -clock.getElapsedTime() / 5;
+    // sunRayRef.current.rotation.z = -clock.getElapsedTime() / 5;
     sceneRef.current.rotation.y = MathUtils.lerp(
       sceneRef.current.rotation.y,
       (mouse.x * Math.PI * 2) / 80,
@@ -295,7 +295,7 @@ export default ({ isNight }) => {
           </group>
         </group>
 
-        <group position={[-0.6, 0.5, -8]} scale={0.9}>
+        {/* <group position={[-0.6, 0.5, -8]} scale={0.9}>
           <mesh geometry={nodes.sun.geometry}>
             <meshToonMaterial color={"#fb8500"} />
           </mesh>
@@ -307,7 +307,7 @@ export default ({ isNight }) => {
           >
             <meshToonMaterial color={"#e76f51"} />
           </mesh>
-        </group>
+        </group> */}
         {/* <mesh
         geometry={nodes.moon.geometry}
         scale={0.2}
