@@ -140,7 +140,7 @@ canvas {
   border: 2px dashed #ffffffd2;
   box-shadow: 0 0 0 5px #ffffff42;
   font-family: "Sono", sans-serif;
-  cursor: url("/cursor.svg"), default;
+  cursor: url("/pointer.svg"), default;
 }
 
 .btn:hover {

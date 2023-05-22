@@ -1,5 +1,5 @@
 import { Html, useGLTF } from "@react-three/drei";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useThree, useFrame } from "@react-three/fiber";
 import { MathUtils } from "three";
 
@@ -24,14 +24,34 @@ const DOOR_COLORS = [
   "#bfa9e4",
   "#d28dde",
 ];
-
+const RobotFaces = ({ nodes }) => {
+  const [faceNumber, setFace] = useState(1);
+  const handleClick = (e) => {
+    e.stopPropagation();
+    if (faceNumber === 4) {
+      setFace(1);
+    } else {
+      setFace((prev) => prev + 1);
+    }
+  };
+  return (
+    <group onClick={handleClick}>
+      <mesh geometry={nodes.screen.geometry}>
+        <meshBasicMaterial color={"#fbe4ff"} toneMapped={false} />
+      </mesh>
+      <mesh geometry={nodes[`face${faceNumber}`].geometry}>
+        <meshBasicMaterial color={"#ffffff"} toneMapped={false} />
+      </mesh>
+    </group>
+  );
+};
 export default ({ isNight }) => {
   const { nodes } = useGLTF("./models.glb");
   const sceneRef = useRef();
   const sunRayRef = useRef();
   const thunderFlash = useRef();
   const { mouse } = useThree();
-
+  console.log(nodes);
   useFrame(({ clock }) => {
     sunRayRef.current.rotation.z = -clock.getElapsedTime() / 5;
     sceneRef.current.rotation.y = MathUtils.lerp(
@@ -113,9 +133,8 @@ export default ({ isNight }) => {
           <mesh geometry={nodes.computer.geometry}>
             <meshStandardMaterial color={"#b388eb"} />
           </mesh>
-          <mesh geometry={nodes.screen.geometry}>
-            <meshBasicMaterial color={"#fbe4ff"} toneMapped={false} />
-          </mesh>
+
+          <RobotFaces nodes={nodes} />
           {/* <Html
           transform
           occlude
