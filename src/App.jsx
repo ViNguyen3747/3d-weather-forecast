@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import { Vector3 } from "three";
 import Models from "./Models";
-
+import { Howl } from "howler";
 const DAY_SKY = `linear-gradient(
     0deg,
   hsl(301deg 100% 88%) 0%,
@@ -45,8 +45,96 @@ const Rig = ({ isNight }) => {
   return <></>;
 };
 
+const SoundControls = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const lofiRef = useRef(null);
+  const weatherRef = useRef(null);
+
+  const playAudio = () => {
+    const lofiAudio = new Howl({
+      src: ["./lofi.mp3"],
+      loop: true,
+      autoplay: true,
+    });
+    lofiRef.current = lofiAudio;
+    const thunderstormAudio = new Howl({
+      src: ["./thunderstorm.mp3"],
+      loop: true,
+      autoplay: true,
+      volume: 0.5,
+    });
+    weatherRef.current = thunderstormAudio;
+    setIsPlaying(true);
+  };
+  const pauseAudio = () => {
+    lofiRef.current.pause();
+    weatherRef.current.pause();
+    setIsPlaying(false);
+  };
+  return (
+    <>
+      <div className="soundControl">
+        {isPlaying ? (
+          <div onClick={pauseAudio} className="sound">
+            <img
+              src="./sound.svg"
+              alt="Sound on button"
+              width="30"
+              height="30"
+            />
+          </div>
+        ) : (
+          <div onClick={playAudio} className="sound">
+            <img
+              src="./mute.svg"
+              alt="Sound off button"
+              width="30"
+              height="30"
+            />
+          </div>
+        )}
+      </div>
+      <audio ref={lofiRef}>
+        <source src="./lofi.mp3" type="audio/mpeg" />
+      </audio>
+      <audio ref={weatherRef}>
+        <source src="./thunderstorm.mp3" type="audio/mpeg" />
+      </audio>
+    </>
+  );
+};
+
+const Contribution = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleToggle = (e) => {
+    e.preventDefault();
+    setIsOpen((prev) => !prev);
+  };
+  return (
+    <>
+      <div
+        className={`contribution-toggle-button  ${
+          isOpen && "contribution-toggle-active"
+        }`}
+        onClick={(e) => handleToggle(e)}
+      >
+        <span>i</span>
+      </div>
+      <div
+        className={`contribution-info ${isOpen && "contribution-is-active"}`}
+      >
+        Morning Routine by Ghostrifter Official |
+        https://soundcloud.com/ghostrifter-official Music promoted by
+        https://www.chosic.com/free-music/all/ Creative Commons CC BY-SA 3.0
+        https://creativecommons.org/licenses/by-sa/3.0/
+      </div>
+    </>
+  );
+};
 function App() {
   const [isNight, setNight] = useState(false);
+
+  console.log("here");
   useEffect(() => {
     fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=seattle&appid=27cc0f9e54d73d8e67bfafb8beef78e4"
@@ -54,14 +142,14 @@ function App() {
       .then((response) => response.json())
       .then((data) => console.log(data));
   }, []);
+
   return (
     <>
-      <button
-        className="Overlay"
-        onClick={() => setNight((isNight) => !isNight)}
-      >
-        Night
-      </button>
+      <div className="Overlay">
+        <button onClick={() => setNight((isNight) => !isNight)}>Night</button>
+      </div>
+      <SoundControls />
+      <Contribution />
       <Form />
       {/* <div className="data-container">
         <div className="data-box">
@@ -73,11 +161,6 @@ function App() {
         </div>
       </div> */}
       <Canvas camera={{ position: [0, 0, 10], fov: 10 }}>
-        <ambientLight intensity={isNight ? 0.3 : 1} />
-        <directionalLight
-          intensity={isNight ? 0.3 : 1}
-          position={[20, 0, 10]}
-        />
         <Models isNight={isNight} />
         <Rig isNight={isNight} />
       </Canvas>

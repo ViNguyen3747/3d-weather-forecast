@@ -26,6 +26,15 @@ canvas {
   cursor: url("/cursor.svg"), default;
 }
 
+.soundControl {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  cursor: url("/cursor.svg"), default;
+}
+
 .draft {
   color: #d28dde;
 }
@@ -201,7 +210,52 @@ canvas {
   position: absolute;
   background-color: #ffffff;
   width: 0.2em;
-  height: 20em;
+  height: 19em;
   margin-left: 17em;
   top: 0;
+}
+
+/* contribution */
+.contribution-toggle-button {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background-color: #ffffff95;
+  border: 2px dashed #ffffff;
+  box-shadow: 0 0 0 5px #ffffff95;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 1em;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bolder;
+  font-size: large;
+  transition: transform 0.8s ease-in-out;
+}
+.contribution-toggle-active {
+  transform: translateX(-24em);
+}
+.contribution-info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 1em;
+  z-index: 1;
+  width: 30em;
+  height: fit-content;
+  background-color: #ffffff95;
+  border: 2px dashed #ffffff;
+  box-shadow: 0 0 0 5px #ffffff95;
+  font-size: small;
+  color: white;
+  padding: 1em;
+  transition: transform 0.8s ease-in-out;
+  transform: translateX(34em);
+}
+.contribution-is-active {
+  transform: translateX(0);
 }
